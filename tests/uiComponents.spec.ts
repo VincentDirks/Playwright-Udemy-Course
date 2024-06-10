@@ -5,7 +5,13 @@ test.beforeEach(async ({ page }, testInfo) => {
 })
 
 test.describe("Forms Layouts page", () => {
-  test.beforeEach(async ({ page }) => {
+  test.describe.configure({ retries: 2,  })
+
+  test.beforeEach(async ({ page }, testInfo) => {
+    if(testInfo.retry){
+      // do any clean up from previous failed attempt
+    }
+
     await page.getByText("Forms").click()
     await page.getByText("Form Layouts").click()
   })
@@ -226,8 +232,8 @@ test("Date Picker", async ({ page }) => {
 
   await page
     // .locator('[class="day-cell ng-star-inserted"]') // this uses exact match, partial matches would include days from prev and next months
-    
-    .locator(".day-cell.ng-star-inserted:not(.bounding-month)") 
+
+    .locator(".day-cell.ng-star-inserted:not(.bounding-month)")
     // this is better because it matches for both single date picker as well as the date range picker
 
     .getByText(selectDayOfMonth, { exact: true })

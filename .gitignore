@@ -40,6 +40,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Playwright Generated Files
 /test-results/
 /playwright-report/
 /blob-report/
@@ -48,3 +50,4 @@ Thumbs.db
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/screenshots/

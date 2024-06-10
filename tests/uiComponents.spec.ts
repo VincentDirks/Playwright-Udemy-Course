@@ -1,16 +1,16 @@
 import { test, expect } from "@playwright/test"
 
-test.describe.configure({mode:'parallel'})
+test.describe.configure({ mode: "parallel" })
 
 test.beforeEach(async ({ page }, testInfo) => {
   await page.goto("http://localhost:4200/")
 })
 
 test.describe.parallel("Forms Layouts page", () => {
-  test.describe.configure({ retries: 2,  })
+  test.describe.configure({ retries: 2 })
 
   test.beforeEach(async ({ page }, testInfo) => {
-    if(testInfo.retry){
+    if (testInfo.retry) {
       // do any clean up from previous failed attempt
     }
 
@@ -25,8 +25,9 @@ test.describe.parallel("Forms Layouts page", () => {
 
     await usingTheGridEmailInput.fill("test@test.com")
     await usingTheGridEmailInput.clear()
-    await usingTheGridEmailInput.pressSequentially("test2@test.com"
-//      ,{delay: 500,}
+    await usingTheGridEmailInput.pressSequentially(
+      "test2@test.com"
+      //      ,{delay: 500,}
     )
 
     // generic assertion
@@ -244,7 +245,7 @@ test("Date Picker", async ({ page }) => {
   await expect(calendarInputfield).toHaveValue(formattedSelectDate)
 })
 
-test.skip("Sliders", async ({ page }) => {
+test("Sliders", async ({ page }) => {
   // Update attribute
   // const tempGaugeDraggerHandle = page.locator('[tabtitle="Temperature"] ngx-temperature-dragger circle')
   // await tempGaugeDraggerHandle.evaluate(node => {
@@ -268,14 +269,27 @@ test.skip("Sliders", async ({ page }) => {
     y: box.y + box.height / 2,
   }
 
+  await page.screenshot({
+    path: "screenshots/sliderBefore.png",
+    caret: "initial",
+  })
+
   await page.mouse.move(c.x, c.y)
   await page.mouse.down()
   await page.mouse.move(c.x + 100, c.y)
   await page.mouse.move(c.x + 100, c.y + 100)
   await page.mouse.up()
+  await page.screenshot({
+    path: "screenshots/sliderAfterDrag.png",
+    caret: "initial",
+  })
 
   await page.mouse.click(c.x + 100, c.y + 100)
   // this was needed to get the scenario to run in Playwright UI mode viewer
+  await page.screenshot({
+    path: "screenshots/sliderAfterClick.png",
+    caret: "initial",
+  })
 
   await expect(tempGauge).toContainText("12")
 })

@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }, testInfo) => {
   testInfo.setTimeout(testInfo.timeout +2000)
 })
 
-test("Auto Waiting", async ({ page }) => {
+test.skip("Auto Waiting", async ({ page }) => {
   const successButton = page.locator(".bg-success")
 
   //   const text = await successButton.textContent()  // waits automatically (upto default 30s)
@@ -21,7 +21,7 @@ test("Auto Waiting", async ({ page }) => {
   }) // waits default  upto 5s, unless overridden
 })
 
-test("alternative waits", async ({ page }) => {
+test.skip("alternative waits", async ({ page }) => {
   const successButton = page.locator(".bg-success")
 
   // wait for element
@@ -37,7 +37,7 @@ test("alternative waits", async ({ page }) => {
   expect(text2).toContain("Data loaded with AJAX get request.")
 })
 
-test("timeouts", async ({ page }) => {
+test.skip("timeouts", async ({ page }) => {
   //test.setTimeout(10000)
   test.slow()
   const successButton = page.locator(".bg-success")

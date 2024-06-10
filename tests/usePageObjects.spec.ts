@@ -3,6 +3,7 @@ import { PageManager } from "../page-objects/pageManager"
 import { NavigationPage } from "../page-objects/navigationPage"
 import { FormLayoutsPage } from "../page-objects/formLayoutsPage"
 import { DatePickerPage } from "../page-objects/datePickerPage"
+import { faker } from "@faker-js/faker"
 
 test.beforeEach(async ({ page }, testInfo) => {
   await page.goto("http://localhost:4200/")
@@ -45,6 +46,13 @@ test("DatePickerPage Object", async ({ page }) => {
 
 test("Page Manger", async ({ page }) => {
   const pm = new PageManager(page)
+  const randomFullName = faker.person.fullName({
+    // sex: "male",       // specify sex (optional)
+    // lastName: "Johns", // specify last name (optional)
+  })
+  const randomEmail = `${randomFullName.replace(/ /g, "")}${faker.number.int(
+    1000
+  )}@test.com`
 
   await pm.navigateTo().formLayoutsPage()
   await pm
@@ -56,11 +64,7 @@ test("Page Manger", async ({ page }) => {
     )
   await pm
     .onFormLayoutsPage()
-    .submitInLineFormWithNameEmailAndCheckbox(
-      "John Smith",
-      "john@test.com",
-      true
-    )
+    .submitInLineFormWithNameEmailAndCheckbox(randomFullName, randomEmail, true)
 
   await pm.navigateTo().datePickerPage()
   await pm.onDatePickerPage().selectCommonDatePickerDateFromToday(10)

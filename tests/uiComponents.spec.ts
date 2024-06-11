@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }, testInfo) => {
   await page.goto("/")
 })
 
-test.describe.parallel("Forms Layouts page", () => {
+test.describe("Forms Layouts page @block", () => {
   test.describe.configure({ retries: 2 })
 
   test.beforeEach(async ({ page }, testInfo) => {

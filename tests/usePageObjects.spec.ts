@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }, testInfo) => {
   await page.goto("/")
 })
 
-test("navigate to all pages", async ({ page }) => {
+test("navigate to all pages @smoke @regression", async ({ page }) => {
   const navigateTo = new NavigationPage(page)
   await navigateTo.formLayoutsPage()
   await navigateTo.datePickerPage()
@@ -18,7 +18,7 @@ test("navigate to all pages", async ({ page }) => {
   await navigateTo.tooltipPage()
 })
 
-test("parameterised methods", async ({ page }) => {
+test("parameterised methods @smoke", async ({ page }) => {
   const navigateTo = new NavigationPage(page)
   const onFormLayoutsPage = new FormLayoutsPage(page)
 

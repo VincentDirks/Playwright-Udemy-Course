@@ -6,7 +6,7 @@ import { DatePickerPage } from "../page-objects/datePickerPage"
 import { faker } from "@faker-js/faker"
 
 test.beforeEach(async ({ page }, testInfo) => {
-  await page.goto("http://localhost:4200/")
+  await page.goto("/")
 })
 
 test("navigate to all pages", async ({ page }) => {
@@ -58,10 +58,11 @@ test("Page Manger", async ({ page }) => {
   await pm
     .onFormLayoutsPage()
     .submitUsingTheGridFormWithCredentialsAndSelectOption(
-      "test@test.com",
-      "Welcome1",
+      process.env.TESTUSERNAME,
+      process.env.PASSWORD,
       "Option 2"
     )
+  
   await page.screenshot({ path: "screenshots/formsLayoutsPage.png" })
   const buffer = await page.screenshot()
   // console.log(buffer.toString('base64'))

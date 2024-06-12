@@ -9,7 +9,7 @@ export default defineConfig<TestOptions>({
 
   use: {
     baseURL: "http://localhost:4200",
-    globalsQaURL: 'https://www.globalsqa.com/demo-site/draganddrop/',
+    globalsQaURL: "https://www.globalsqa.com/demo-site/draganddrop/",
 
     trace: "on-first-retry",
     actionTimeout: 20000,
@@ -37,6 +37,14 @@ export default defineConfig<TestOptions>({
       testMatch: "usePageObjects.spec.ts",
       use: {
         viewport: { width: 1920, height: 1080 },
+      },
+    },
+    {
+      name: "mobile",
+      testMatch: "testMobile.spec.ts",
+      use: {
+       ...devices["iPhone 13 Pro"],
+        // viewport: { width: 414, height: 800 },
       },
     },
   ],

@@ -5,7 +5,11 @@ require("dotenv").config()
 
 export default defineConfig<TestOptions>({
   retries: 1,
-  reporter: "html",
+  reporter: [
+    ["json", { outputFile: "test-results/jsonReport.json" }],
+    ["junit", { outputFile: "test-results/junitReport.xml" }],
+    ['allure-playwright']
+  ],
 
   use: {
     baseURL: "http://localhost:4200",
@@ -43,7 +47,7 @@ export default defineConfig<TestOptions>({
       name: "mobile",
       testMatch: "testMobile.spec.ts",
       use: {
-       ...devices["iPhone 13 Pro"],
+        ...devices["iPhone 13 Pro"],
         // viewport: { width: 414, height: 800 },
       },
     },

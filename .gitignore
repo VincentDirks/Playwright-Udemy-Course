@@ -52,3 +52,5 @@ Thumbs.db
 /playwright/.cache/
 /screenshots/
 .env
+allure-report/
+allure-results/

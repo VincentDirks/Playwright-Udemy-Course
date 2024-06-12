@@ -4,11 +4,15 @@ import type { TestOptions } from "./test-options"
 require("dotenv").config()
 
 export default defineConfig<TestOptions>({
+  expect: {
+    // toMatchSnapshot: { maxDiffPixels: 50 },
+  },
   retries: 1,
   reporter: [
     ["json", { outputFile: "test-results/jsonReport.json" }],
     ["junit", { outputFile: "test-results/junitReport.xml" }],
-    ['allure-playwright']
+    // ["allure-playwright"],
+    ["html"],
   ],
 
   use: {

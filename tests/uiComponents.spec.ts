@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }, testInfo) => {
 })
 
 test.describe("Forms Layouts page @block", () => {
-  test.describe.configure({ retries: 2 })
+  test.describe.configure({ retries: 0 })
 
   test.beforeEach(async ({ page }, testInfo) => {
     if (testInfo.retry) {
@@ -38,7 +38,7 @@ test.describe("Forms Layouts page @block", () => {
     await expect(usingTheGridEmailInput).toHaveValue("test2@test.com")
   })
 
-  test("radio buttons", async ({ page }) => {
+  test.only("radio buttons", async ({ page }) => {
     const usingTheGridForm = page.locator("nb-card", {
       hasText: "Using the Grid",
     })
@@ -71,6 +71,8 @@ test.describe("Forms Layouts page @block", () => {
         .getByRole("radio", { name: "Option 2" })
         .isChecked()
     ).toBeTruthy()
+
+    await expect(usingTheGridForm).toHaveScreenshot({ maxDiffPixels: 150 })
   })
 })
 

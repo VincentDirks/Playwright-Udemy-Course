@@ -1,5 +1,6 @@
 import { defineConfig, devices } from "@playwright/test"
 import type { TestOptions } from "./test-options"
+import { start } from "repl"
 
 require("dotenv").config()
 
@@ -56,4 +57,8 @@ export default defineConfig<TestOptions>({
       },
     },
   ],
+  webServer: {
+    command: 'npm run start',
+    url: 'http://localhost:4200/'
+  }
 })

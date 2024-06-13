@@ -72,6 +72,13 @@ test.describe("Forms Layouts page @block", () => {
         .isChecked()
     ).toBeTruthy()
 
+    await page.waitForTimeout(500)
+
+    await page.screenshot({
+      path: "screenshots/tryingCSS.png",
+      style: `ngx-form-layouts > div.row:nth-child(2) > div.col-md-6:nth-child(2) > nb-card:nth-child(1) > nb-card-body { visibility:hidden; }
+       ngx-form-layouts > div.row:nth-child(2) > div.col-md-6:nth-child(2) > nb-card:nth-child(1) { background-color: #909090; }`,
+    })
     await expect(usingTheGridForm).toHaveScreenshot({ maxDiffPixels: 150 })
   })
 })
